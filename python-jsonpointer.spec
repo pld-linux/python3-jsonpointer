@@ -7,7 +7,7 @@
 Summary:	Identify specific nodes in a JSON document (RFC 6901)
 Name:		python-jsonpointer
 Version:	1.10
-Release:	3
+Release:	4
 License:	BSD
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/j/jsonpointer/jsonpointer-%{version}.tar.gz
