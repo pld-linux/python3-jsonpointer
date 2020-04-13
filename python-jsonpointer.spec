@@ -5,40 +5,52 @@
 %bcond_without	python3 # CPython 3.x module
 
 Summary:	Identify specific nodes in a JSON document (RFC 6901)
+Summary(pl.UTF-8):	Identyfikowanie określonych węzłów w dokumencie JSON (RFC 6901)
 Name:		python-jsonpointer
-Version:	1.10
-Release:	4
+Version:	2.0
+Release:	1
 License:	BSD
 Group:		Libraries/Python
+#Source0Download: https://pypi.org/simple/jsonpointer/
 Source0:	https://files.pythonhosted.org/packages/source/j/jsonpointer/jsonpointer-%{version}.tar.gz
-# Source0-md5:	d68c0c6ad6889e9c94ec0feba719e45e
-URL:		https://pypi.python.org/pypi/jsonpointer
+# Source0-md5:	741b98d0e693b08b5e44e0a9da5a7bb7
+URL:		https://pypi.org/project/jsonpointer/
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with python2}
+BuildRequires:	python-modules >= 1:2.7
 BuildRequires:	python-setuptools
 %endif
 %if %{with python3}
+BuildRequires:	python3-modules >= 1:3.4
 BuildRequires:	python3-setuptools
 %endif
-Requires:	python-modules
+Requires:	python-modules >= 1:2.7
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Library to resolve JSON Pointers according to RFC 6901.
 
+%description -l pl.UTF-8
+Biblioteka do rozwiązywania wskaźników JSON zgodnie z RFC 6901.
+
 %package -n python3-jsonpointer
 Summary:	Identify specific nodes in a JSON document (RFC 6901)
+Summary(pl.UTF-8):	Identyfikowanie określonych węzłów w dokumencie JSON (RFC 6901)
 Group:		Libraries/Python
-Requires:	python3-modules
+Requires:	python3-modules >= 1:3.4
 
 %description -n python3-jsonpointer
 Library to resolve JSON Pointers according to RFC 6901.
 
+%description -n python3-jsonpointer -l pl.UTF-8
+Biblioteka do rozwiązywania wskaźników JSON zgodnie z RFC 6901.
+
 %package -n jsonpointer
 Summary:	Identify specific nodes in a JSON document (RFC 6901)
-Group:		Libraries/Python
+Summary(pl.UTF-8):	Identyfikowanie określonych węzłów w dokumencie JSON (RFC 6901)
+Group:		Applications/Text
 %if %{with python3}
 Requires:	python3-jsonpointer = %{version}-%{release}
 %else
@@ -47,6 +59,9 @@ Requires:	%{name} = %{version}-%{release}
 
 %description -n jsonpointer
 Tool to resolve JSON Pointers according to RFC 6901.
+
+%description -n jsonpointer -l pl.UTF-8
+Narzędzie do rozwiązywania wskaźników JSON zgodnie z RFC 6901.
 
 %prep
 %setup -q -n jsonpointer-%{version}
@@ -81,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS README.md
+%doc AUTHORS LICENSE.txt README.md
 %{py_sitescriptdir}/jsonpointer.py[co]
 %{py_sitescriptdir}/jsonpointer-%{version}-py*.egg-info
 %endif
@@ -89,13 +104,12 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
 %files -n python3-jsonpointer
 %defattr(644,root,root,755)
-%doc AUTHORS README.md
+%doc AUTHORS LICENSE.txt README.md
 %{py3_sitescriptdir}/jsonpointer.py
-%{py3_sitescriptdir}/__pycache__/*
+%{py3_sitescriptdir}/__pycache__/jsonpointer.cpython-*.py[co]
 %{py3_sitescriptdir}/jsonpointer-%{version}-py*.egg-info
 %endif
 
 %files -n jsonpointer
 %defattr(644,root,root,755)
-%doc AUTHORS README.md
 %attr(755,root,root) %{_bindir}/jsonpointer
