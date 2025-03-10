@@ -8,7 +8,7 @@ Summary:	Identify specific nodes in a JSON document (RFC 6901)
 Summary(pl.UTF-8):	Identyfikowanie określonych węzłów w dokumencie JSON (RFC 6901)
 Name:		python-jsonpointer
 Version:	2.3
-Release:	1
+Release:	2
 License:	BSD
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/jsonpointer/
